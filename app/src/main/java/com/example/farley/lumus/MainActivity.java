@@ -11,6 +11,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.farley.lumus.databinding.ActivityMainBinding;
 
@@ -82,11 +83,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 conjuroIdenty = true;
                 onOffLuz();
                 break;
-
+            case "Knox":
+                noxConjuro();
+                break;
+            case "nox":
+                noxConjuro();
+                break;
+            case "alohomora":
+                alohomoraConjuro();
+                break;
+            case "rocio":
+                crucioConjuro();
+                break;
+            case "lucio":
+                crucioConjuro();
+                break;
+            case "cruzio":
+                crucioConjuro();
+                break;
+            case "expecto patronum":
+                espectoPatronum();
+                break;
+            case "expecto Patron":
+                espectoPatronum();
+                break;
+            case "expecto Patron on":
+                espectoPatronum();
+                break;
+            case "operation":
+                apareciumConjuro();
+                break;
+            case "population":
+                apareciumConjuro();
+                break;
         }
     }
 
 
+    //region Conjuros
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void onOffLuz(){
         parameters = this.camera.getParameters();
@@ -98,6 +132,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.camera.startPreview();
     }
 
+    private void noxConjuro(){
+        parameters = this.camera.getParameters();
+        if (parameters.getFlashMode().equals(Camera.Parameters.FLASH_MODE_TORCH)){
+            parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+            this.camera.setParameters(parameters);
+            this.camera.startPreview();
+        }
+
+    }
+
+    private void crucioConjuro(){
+        Toast.makeText(this,"Mago malo",Toast.LENGTH_SHORT).show();
+    }
+
+    private void alohomoraConjuro(){
+        Toast.makeText(this,"Alohomora",Toast.LENGTH_SHORT).show();
+    }
+
+    private void espectoPatronum(){
+        Toast.makeText(this,"Especto patronum",Toast.LENGTH_SHORT).show();
+    }
+
+    private void expelliarmusConjuro(){
+        Toast.makeText(this,"Exprelliarmus",Toast.LENGTH_SHORT).show();
+    }
+
+    private void apareciumConjuro(){
+        binding.txtPalabras.setVisibility(View.VISIBLE);
+    }
+    //endregion
 
     @Override
     protected void onDestroy() {
