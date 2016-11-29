@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivityForResult(intent,RECORD_CODE);
     }
 
+    //region select conjuro
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode==RECORD_CODE && resultCode==RESULT_OK){
@@ -75,49 +76,81 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 conjuroIdenty = true;
                 onOffLuz();
                 break;
+
             case "neumos":
                 conjuroIdenty = true;
                 onOffLuz();
                 break;
+
             case "lumos":
                 conjuroIdenty = true;
                 onOffLuz();
                 break;
+
             case "Knox":
                 noxConjuro();
                 break;
+
             case "nox":
                 noxConjuro();
                 break;
+
             case "alohomora":
                 alohomoraConjuro();
                 break;
-            case "rocio":
+
+            case "Rocio":
                 crucioConjuro();
                 break;
+
             case "lucio":
                 crucioConjuro();
                 break;
+
             case "cruzio":
                 crucioConjuro();
                 break;
+
+            case "crucio":
+                crucioConjuro();
+                break;
+
             case "expecto patronum":
                 espectoPatronum();
                 break;
+
             case "expecto Patron":
                 espectoPatronum();
                 break;
+
             case "expecto Patron on":
                 espectoPatronum();
                 break;
+
             case "operation":
                 apareciumConjuro();
                 break;
+
             case "population":
                 apareciumConjuro();
                 break;
+
+            case "Expelliarmus":
+                expelliarmusConjuro();
+                break;
+
+            case "impero":
+                break;
+
+            case "petrificus totalus":
+                break;
+
+            case "avada kedavra":
+                break;
+
         }
     }
+    //endregion
 
 
     //region Conjuros
