@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Lumus.iml" filepath="$PROJECT_DIR$/Lumus.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lumos_project.iml" filepath="$PROJECT_DIR$/lumos_project.iml" />
     </modules>
   </component>
 </project>

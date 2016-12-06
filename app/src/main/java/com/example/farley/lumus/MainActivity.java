@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.farley.lumus.Utils.ConjuroManager;
 import com.example.farley.lumus.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
@@ -21,12 +22,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //region Vars
     private static final int RECORD_CODE = 12;
-    private boolean conjuroIdenty = false;
+    public static boolean conjuroIdenty = false;
     Camera camera;
     Camera.Parameters parameters;
-    //endegion
+    //endregion
 
     ActivityMainBinding binding;
+    ConjuroManager manager;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -38,8 +40,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         camera = Camera.open(0);
 
+        manager = new ConjuroManager(this);
+
     }
 
+    //region ON_CLICK
     @Override
     public void onClick(View view) {
         initRecord();
@@ -52,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT,"Conjuro...");
         startActivityForResult(intent,RECORD_CODE);
     }
+    //endregion
 
     //region select conjuro
     @Override
@@ -66,88 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (String pal:palabras){
             Log.i("haur","Palabras: "+pal);
             if (!conjuroIdenty)
-                indentifyConjuro(pal);
-        }
-    }
-
-    private void indentifyConjuro(String palabra){
-        switch (palabra){
-            case "Loomis":
-                conjuroIdenty = true;
-                onOffLuz();
-                break;
-
-            case "neumos":
-                conjuroIdenty = true;
-                onOffLuz();
-                break;
-
-            case "lumos":
-                conjuroIdenty = true;
-                onOffLuz();
-                break;
-
-            case "Knox":
-                noxConjuro();
-                break;
-
-            case "nox":
-                noxConjuro();
-                break;
-
-            case "alohomora":
-                alohomoraConjuro();
-                break;
-
-            case "Rocio":
-                crucioConjuro();
-                break;
-
-            case "lucio":
-                crucioConjuro();
-                break;
-
-            case "cruzio":
-                crucioConjuro();
-                break;
-
-            case "crucio":
-                crucioConjuro();
-                break;
-
-            case "expecto patronum":
-                espectoPatronum();
-                break;
-
-            case "expecto Patron":
-                espectoPatronum();
-                break;
-
-            case "expecto Patron on":
-                espectoPatronum();
-                break;
-
-            case "operation":
-                apareciumConjuro();
-                break;
-
-            case "population":
-                apareciumConjuro();
-                break;
-
-            case "Expelliarmus":
-                expelliarmusConjuro();
-                break;
-
-            case "impero":
-                break;
-
-            case "petrificus totalus":
-                break;
-
-            case "avada kedavra":
-                break;
-
+                manager.indentifyConjuro(pal);
         }
     }
     //endregion
@@ -155,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //region Conjuros
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private void onOffLuz(){
+    public void onOffLuz(){
         parameters = this.camera.getParameters();
         if (parameters.getFlashMode().equals(Camera.Parameters.FLASH_MODE_TORCH))
             parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
@@ -165,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.camera.startPreview();
     }
 
-    private void noxConjuro(){
+    public void noxConjuro(){
         parameters = this.camera.getParameters();
         if (parameters.getFlashMode().equals(Camera.Parameters.FLASH_MODE_TORCH)){
             parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
@@ -175,23 +100,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    private void crucioConjuro(){
+    public void crucioConjuro(){
         Toast.makeText(this,"Mago malo",Toast.LENGTH_SHORT).show();
     }
 
-    private void alohomoraConjuro(){
+    public void alohomoraConjuro(){
         Toast.makeText(this,"Alohomora",Toast.LENGTH_SHORT).show();
     }
 
-    private void espectoPatronum(){
+    public void espectoPatronum(){
         Toast.makeText(this,"Especto patronum",Toast.LENGTH_SHORT).show();
     }
 
-    private void expelliarmusConjuro(){
+    public void expelliarmusConjuro(){
         Toast.makeText(this,"Exprelliarmus",Toast.LENGTH_SHORT).show();
     }
 
-    private void apareciumConjuro(){
+    public void apareciumConjuro(){
         binding.txtPalabras.setVisibility(View.VISIBLE);
     }
     //endregion
